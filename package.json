@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/endomorphosis/ipfs_transformers_js#readme",
   "dependencies": {
-    "@huggingface/transformers": "^3.0.0-alpha.6"
+    "@huggingface/transformers": "^3.0.0-alpha.6",
+    "ipfs_model_manager_js": "1.0.5"
   }
 }
