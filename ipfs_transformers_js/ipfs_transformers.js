@@ -4,14 +4,11 @@ import http from 'http';
 import querystring from 'querystring';
 import url from 'url';
 import { pipeline, env } from '@huggingface/transformers';
-// import { ipfsModelManager } from 'ipfs_model_manager_js';
+import { ipfsModelManager } from 'ipfs_model_manager_js';
 import { requireConfig } from '../config/config.js';
-const hf_pipeline = pipeline;
-const hf_env = env;
-
 
 export class ipfsTransformersJs {
-    constructor() {
+    constructor(resources = null, meta = null) {
         this.thisDir = path.dirname(import.meta.url);
         if (this.thisDir.startsWith("file://")) {
             this.thisDir = this.thisDir.replace("file://", "");
@@ -24,13 +21,27 @@ export class ipfsTransformersJs {
         else{
             // this.config = new requireConfig();
         }
-
-        hf_env.cacheDir = './.cache';
-        hf_env.localModelPath = '/path/to/models/';
+        const hf_pipeline = pipeline;
+        const hf_env = env;
+        hf_env.cacheDir = this.config.paths.localPath;
+        hf_env.localModelPath = this.config.paths.localPath;
         hf_env.allowRemoteModels = false;
+        this.ipfsModelManager = new ipfsModelManager(resources, meta);
+    }
+
+    async init() {
+        this.ipfsModelManager.init();
+        this.ipfsModelManager.loadCollectionCache();
+        // await this.state();
+        await this.state({src: "local"});
+        // await this.state({src: "ipfs"});
+        // await this.state({src: "https"});
+        await this.loadCollectionCache();
     }
 
     async pipeline(task, model, options) {
+        await this.init();
+        await this.ipfsModelManager.downloadModel(model);
         const pipeline = await hf_pipeline(task, model, options);
         return pipeline;
     }
