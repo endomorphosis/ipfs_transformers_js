@@ -1,6 +1,7 @@
 {
   "name": "ipfs_transformers_js",
   "version": "1.0.1",
+  "type": "module",
   "description": "",
   "main": "ipfs_transformers.js",
   "scripts": {
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/endomorphosis/ipfs_transformers_js/issues"
   },
-  "homepage": "https://github.com/endomorphosis/ipfs_transformers_js#readme"
+  "homepage": "https://github.com/endomorphosis/ipfs_transformers_js#readme",
+  "dependencies": {
+    "@huggingface/transformers": "^3.0.0-alpha.6"
+  }
 }
