@@ -8,7 +8,7 @@ import { ipfsModelManager } from 'ipfs_model_manager_js';
 import { requireConfig } from '../config/config.js';
 
 export class ipfsTransformersJs {
-    constructor(resources = null, meta = null) {
+    constructor(resources = null, meta = {}) {
         this.thisDir = path.dirname(import.meta.url);
         if (this.thisDir.startsWith("file://")) {
             this.thisDir = this.thisDir.replace("file://", "");
@@ -17,15 +17,19 @@ export class ipfsTransformersJs {
         if (fs.existsSync(path.join(this.parentDir, "config", "config.toml"))) {
             this.config = new requireConfig({config: path.join(this.parentDir, "config", "config.toml")});
             this.s3cfg = this.config.s3;
+            meta.s3cfg = this.s3cfg;
         }
         else{
             // this.config = new requireConfig();
         }
+        for (let key in this.config){
+            meta[key] = this.config[key];
+        }
         this.hf_pipeline = pipeline;
         this.hf_env = env;
-        hf_env.cacheDir = this.config.paths.localPath;
-        hf_env.localModelPath = this.config.paths.localPath;
-        hf_env.allowRemoteModels = false;
+        this.hf_env.cacheDir = this.config.paths.localPath;
+        this.hf_env.localModelPath = this.config.paths.localPath;
+        this.hf_env.allowRemoteModels = false;
         this.ipfsModelManager = new ipfsModelManager(resources, meta);
     }
 
