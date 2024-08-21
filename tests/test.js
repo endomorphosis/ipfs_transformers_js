@@ -1,7 +1,7 @@
 //import { pipeline } from '@endomorphosis/ipfs_transformers_js';
 import ipfsTransformersJs from '../ipfs_transformers_js/ipfs_transformers.js';
 
-class testPipeline {
+class testIpfsTransformersJs {
   constructor() {
   }
 
@@ -16,7 +16,7 @@ class testPipeline {
   }
 }
 
-export default testPipeline;
+export default testIpfsTransformersJs;
 
 
 if (require.main === module) {
