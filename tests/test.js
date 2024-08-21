@@ -21,5 +21,10 @@ export default testIpfsTransformersJs;
 
 if (require.main === module) {
   const test = new testPipeline();
-  test.test();
+  try{
+    test.test();
+  } catch (e) {
+    console.error(e);
+    process.exit(1);
+  }
 }
