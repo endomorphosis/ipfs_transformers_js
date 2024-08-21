@@ -21,8 +21,8 @@ export class ipfsTransformersJs {
         else{
             // this.config = new requireConfig();
         }
-        const hf_pipeline = pipeline;
-        const hf_env = env;
+        this.hf_pipeline = pipeline;
+        this.hf_env = env;
         hf_env.cacheDir = this.config.paths.localPath;
         hf_env.localModelPath = this.config.paths.localPath;
         hf_env.allowRemoteModels = false;
@@ -42,7 +42,7 @@ export class ipfsTransformersJs {
     async pipeline(task, model, options) {
         await this.init();
         await this.ipfsModelManager.downloadModel(model);
-        const pipeline = await hf_pipeline(task, model, options);
+        const pipeline = await this.hf_pipeline(task, model, options);
         return pipeline;
     }
 
