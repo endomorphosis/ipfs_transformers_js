@@ -7,7 +7,7 @@ import { pipeline, env } from '@huggingface/transformers';
 import { ipfsModelManager } from 'ipfs_model_manager_js';
 import { requireConfig } from '../config/config.js';
 
-export class ipfsTransformersJs {
+export default class ipfsTransformersJs {
     constructor(resources = null, meta = {}) {
         this.thisDir = path.dirname(import.meta.url);
         if (this.thisDir.startsWith("file://")) {
