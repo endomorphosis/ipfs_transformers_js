@@ -54,14 +54,3 @@ export class ipfsTransformersJs {
         return hf_env;
     }
 }
-
-function test() {
-    const test = new ipfsTransformersJs();
-    test.pipeline('text-classification', 'Xenova/distilbert-base-uncased-finetuned-sst-2-english', { progress_callback: null }).then((pipeline) => {
-        pipeline.predict('This is a test').then((result) => {
-            console.log(result);
-        });
-    });
-}
-
-test();
