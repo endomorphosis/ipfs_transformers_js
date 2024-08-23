@@ -38,7 +38,7 @@ class testIpfsTransformersJs {
 export default testIpfsTransformersJs;
 
 
-if (require.main === module) {
+if (import.meta.url === 'file://' + process.argv[1]) {
   const test = new testPipeline();
   try{
     test.init();
