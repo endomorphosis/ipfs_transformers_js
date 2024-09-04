@@ -4,10 +4,10 @@ import http from 'http';
 import querystring from 'querystring';
 import url from 'url';
 import { pipeline, env } from '@huggingface/transformers';
-import { ipfsModelManager } from 'ipfs_model_manager_js';
+import { ipfsModelManagerJs } from 'ipfs_model_manager_js';
 import { requireConfig } from '../config/config.js';
 
-export default class ipfsTransformersJs {
+export class ipfsTransformersJs {
     constructor(resources = null, meta = {}) {
         this.thisDir = path.dirname(import.meta.url);
         if (this.thisDir.startsWith("file://")) {
@@ -30,7 +30,7 @@ export default class ipfsTransformersJs {
         this.hf_env.cacheDir = this.config.paths.localPath;
         this.hf_env.localModelPath = this.config.paths.localPath;
         this.hf_env.allowRemoteModels = false;
-        this.ipfsModelManager = new ipfsModelManager(resources, meta);
+        this.ipfsModelManager = new ipfsModelManagerJs(resources, meta);
     }
 
     async init() {
@@ -54,3 +54,5 @@ export default class ipfsTransformersJs {
         return hf_env;
     }
 }
+
+export default ipfsTransformersJs;

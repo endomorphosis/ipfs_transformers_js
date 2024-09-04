@@ -1,7 +1,7 @@
 //import { pipeline } from '@endomorphosis/ipfs_transformers_js';
 import ipfsTransformersJs from '../ipfs_transformers_js/ipfs_transformers.js';
 
-class testIpfsTransformersJs {
+export class test_ipfs_transformers_js {
   constructor() {
   }
 
@@ -35,7 +35,7 @@ class testIpfsTransformersJs {
   }
 }
 
-export default testIpfsTransformersJs;
+export default test_ipfs_transformers_js;
 
 
 if (import.meta.url === 'file://' + process.argv[1]) {
