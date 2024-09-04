@@ -1,9 +1,9 @@
 {
   "name": "ipfs_transformers_js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "description": "",
-  "main": "ipfs_transformers.js",
+  "main": "index.js",
   "scripts": {
     "test": " node tests/test.js"
   },
